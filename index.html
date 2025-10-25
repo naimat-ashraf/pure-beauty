@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PureBeauty — Where Your Glow Begins</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 2px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: 0.3s ease-in-out;
+    }
+
+    button {
+      background: transparent;
+      border: 1px solid #fff;
+      padding: 10px 25px;
+      border-radius: 25px;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    button:hover {
+      background: #f5deb3;
+      color: #000;
+      transform: scale(1.05);
+    }
+
+    /* Navbar */
+    nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 60px;
+      position: fixed;
+      top: 0;
+      z-index: 999;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(10px);
+    }
+
+    nav .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      letter-spacing: 3px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a:hover {
+      color: #f5deb3;
+    }
+
+    .book-btn {
+      border: 1px solid #f5deb3;
+      color: #f5deb3;
+    }
+
+    .book-btn:hover {
+      background: #f5deb3;
+      color: #000;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      margin: 4px;
+      transition: all 0.3s ease;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100vh;
+      width: 70%;
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: 0.5s ease;
+      z-index: 998;
+    }
+
+    .mobile-menu.open {
+      right: 0;
+    }
+
+    .mobile-menu a {
+      font-size: 1.2rem;
+      margin: 15px 0;
+      color: #f5deb3;
+    }
+
+  /* Hero Section */
+.hero {
+  margin-top: 80px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;             /* Enables horizontal scroll */
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;      /* Smooth scrolling effect */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #f5deb3 transparent;
+  padding: 20px 0;
+}
+
+/* Custom scroll bar (for desktop view) */
+.hero-grid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.hero-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.hero-grid::-webkit-scrollbar-thumb {
+  background-color: #f5deb3;
+  border-radius: 10px;
+}
+
+.hero-grid img {
+  flex: 0 0 auto;
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 15px;
+  scroll-snap-align: center;
+  transition: transform 0.4s ease;
+}
+
+.hero-grid img:hover {
+  transform: scale(1.05);
+}
+
+/* Text below hero */
+.hero-text {
+  margin-top: 40px;
+}
+
+.hero-text h1 {
+  font-size: 2rem;
+  letter-spacing: 3px;
+}
+
+.hero-text p {
+  margin: 15px 0;
+  font-size: 1rem;
+  color: #d8d8d8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-grid img {
+    width: 300px;
+    height: 320px;
+  }
+
+  .hero-text h1 {
+    font-size: 1.5rem;
+  }
+}
+
+
+     
+    /* Meet the Artist */
+    .artist {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      align-items: center;
+      gap: 40px;
+    }
+
+    .artist img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: 0.3s ease;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .service-card {
+      background: #111;
+      padding: 25px;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(255,255,255,0.1);
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Testimonials */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .testimonial {
+      background: #111;
+      padding: 25px;
+      border-radius: 10px;
+    }
+
+    /* Contact Form */
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea, select {
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      background: #222;
+      color: #fff;
+    }
+
+    textarea {
+      height: 120px;
+      resize: none;
+    }
+
+    /* Footer */
+    footer {
+      background: #000;
+      color: #aaa;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 60px;
+      text-align: center;
+    }
+
+    footer a:hover {
+      color: #f5deb3;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      section {
+        padding: 80px 30px;
+      }
+
+      .hero-grid img {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">PureBeauty</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><button class="book-btn">Book Now</button></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <div></div><div></div><div></div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+    <a href="#book">Book Now</a>
+  </div>
+
+  <section class="hero" id="home">
+  <div class="hero-grid">
+    <img src="https://i.pinimg.com/1200x/41/a2/8d/41a28d8c56afafecd752f98f230b0341.jpg" alt="">
+    <img src="https://i.pinimg.com/736x/2b/82/0d/2b820d575679dea137983655112beda5.jpg" alt="">
+    <img src="https://i.pinimg.com/736x/a2/ea/88/a2ea8842ebb69afac395fd7c6d7bebce.jpg" alt="">
+  </div>
+
+  <div class="hero-text">
+    <h1>WHERE YOUR GLOW BEGINS</h1>
+    <p>Enhancing your natural beauty with personalized makeup artistry.</p>
+    <button>View Portfolio</button>
+  </div>
+</section>
+
+
+  <!-- Meet the Artist -->
+  <section id="about">
+    <h2>Meet the Artist</h2><br />
+    <div class="artist">
+      <div>
+        <p><strong>Nyema Johnson</strong> is a passionate makeup artist who believes beauty is about enhancing what you already have. With years of experience in bridal and editorial looks, her artistry focuses on glowing skin and effortless confidence.</p>
+      </div>
+      <div>
+        <img src="https://i.pinimg.com/736x/73/ce/42/73ce429d3fcac2a412d026fe08d6bde1.jpg" alt="">
+        <img src="https://i.pinimg.com/736x/0f/1a/d6/0f1ad60d276111a9a021154e6ee8ef7e.jpg" alt="">
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <h2>Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Bridal Makeup</h3>
+        <p>Flawless bridal looks tailored to your wedding style and theme.</p>
+        <button>Book Now</button>
+      </div>
+      <div class="service-card">
+        <h3>Photoshoot Makeup</h3>
+        <p>Perfect looks for professional shoots and on-camera moments.</p>
+        <button>Book Now</button>
+      </div>
+      <div class="service-card">
+        <h3>Everyday Makeup</h3>
+        <p>Enhance your natural glow for everyday confidence and style.</p>
+        <button>Book Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section>
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      <img src="https://i.pinimg.com/736x/87/12/b0/8712b0ae9bfae038891afecf517edbe2.jpg" alt="">
+      <img src="https://i.pinimg.com/736x/7d/99/26/7d9926f2c6c8a5e0baffd54a6dc1f07d.jpg" alt="">
+      <img src="https://i.pinimg.com/736x/25/ff/f3/25fff34d847b3e9dea65a925aa4e4fa8.jpg" alt="">
+      <img src="https://i.pinimg.com/736x/95/08/43/950843294c51d7657fc979c8edae89eb.jpg" alt="">
+      <img src="https://i.pinimg.com/736x/f5/46/32/f546323e16840ea43bb3ca1d7b99c9ef.jpg" alt="">
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section>
+    <h2>Testimonials</h2>
+    <div class="testimonials">
+      <div class="testimonial">⭐⭐⭐⭐⭐<p>“Nyema made me look stunning on my wedding day!”</p><strong>- Sarah K.</strong></div>
+      <div class="testimonial">⭐⭐⭐⭐⭐<p>“She truly brings out your best features naturally.”</p><strong>- Aisha R.</strong></div>
+      <div class="testimonial">⭐⭐⭐⭐⭐<p>“Professional, kind, and incredibly talented.”</p><strong>- Emma W.</strong></div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Get in Touch</h2>
+    <form>
+      <input type="text" placeholder="Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <select>
+        <option>Select Service</option>
+        <option>Bridal Makeup</option>
+        <option>Photoshoot Makeup</option>
+        <option>Everyday Makeup</option>
+      </select>
+      <textarea placeholder="Message"></textarea>
+      <button type="submit">Book Consultation</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div>
+      <h3>PureBeauty</h3>
+      <p>Enhancing your natural elegance.</p>
+    </div>
+    <div>
+      <a href="#home">Home</a> | 
+      <a href="#about">About</a> | 
+      <a href="#services">Services</a> | 
+      <a href="#contact">Contact</a>
+    </div>
+    <div>
+      <p>📞 +92 300 1234567</p>
+      <p>📧 info@purebeauty.com</p>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>
